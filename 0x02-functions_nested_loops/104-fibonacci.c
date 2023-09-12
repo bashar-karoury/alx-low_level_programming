@@ -16,11 +16,11 @@ int main(void)
 
 	printf("1, ");
 	printf("2, ");
-	while (count <= 98)
+	while (count <= 97)
 	{
 		printed_number = pre_number + pre_pre_number;
 		printf("%.0f", printed_number);
-		if (count < 98)
+		if (count < 97)
 		{
 			printf(", ");
 		}
