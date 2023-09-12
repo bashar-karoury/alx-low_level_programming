@@ -16,11 +16,11 @@ int main(void)
 
 	printf("1, ");
 	printf("2, ");
-	while (count <= 50)
+	while (count <= 49)
 	{
 		printed_number = pre_number + pre_pre_number;
 		printf("%ld", printed_number);
-		if (count < 50)
+		if (count < 49)
 		{
 			printf(", ");
 		}
@@ -28,5 +28,6 @@ int main(void)
 		pre_number = printed_number;
 		count++;
 	}
+	printf("\n");
 	return (0);
 }
