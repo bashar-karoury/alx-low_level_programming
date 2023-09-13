@@ -10,16 +10,16 @@ int main(void)
 {
 
 	int count = 2;
-	double pre_number = 2;
-	double pre_pre_number = 1;
-	double printed_number;
+	unsigned long int pre_number = 2;
+	unsigned long int pre_pre_number = 1;
+	unsigned long int  printed_number;
 
 	printf("1, ");
 	printf("2, ");
 	while (count <= 97)
 	{
 		printed_number = pre_number + pre_pre_number;
-		printf("%.0f", printed_number);
+		printf("%lu", printed_number);
 		if (count < 97)
 		{
 			printf(", ");
