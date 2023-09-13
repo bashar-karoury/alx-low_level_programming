@@ -27,7 +27,7 @@ int main(void)
 	pre_number_left_h = pre_number   / 1000000000;
 	pre_pre_right_h = pre_pre_number % 1000000000;
 	pre_pre_left_h = pre_pre_number  / 1000000000;
-	while (count++ <= 97)
+	while (count++ <= 98)
 	{
 		number_right_h = pre_number_right_h + pre_pre_right_h;
 		number_left_h = pre_number_left_h + pre_pre_left_h;
@@ -37,7 +37,7 @@ int main(void)
 			number_right_h = number_right_h % 1000000000;
 		}
 		printf("%lu%lu", number_left_h, number_right_h);
-		if (count < 97)
+		if (count < 99)
 			printf(", ");
 		pre_pre_right_h = pre_number_right_h;
 		pre_pre_left_h = pre_number_left_h;
