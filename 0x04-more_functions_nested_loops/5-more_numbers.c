@@ -6,15 +6,17 @@ void print2DInt(int n);
 */
 void more_numbers(void)
 {
-	int i;
+	int i, j;
 
-	for (i = 0; i <= 14; i++)
+	for (j = 0; j < 10; j++)
 	{
-		print2DInt(i);
+		for (i = 0; i <= 14; i++)
+		{
+			print2DInt(i);
+		}
+		_putchar('\n');
 	}
-	_putchar('\n');
 }
-
 
 /**
    * print2DInt - prints integers of 2 digits  to stdout using _putchar
