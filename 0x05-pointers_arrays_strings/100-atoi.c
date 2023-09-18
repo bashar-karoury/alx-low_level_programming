@@ -45,5 +45,5 @@ int _atoi(char *s)
 	}
 	if (minus_count % 2)
 		result = (int)-(result);
-	return (int)(result);
+	return ((int)(result));
 }
