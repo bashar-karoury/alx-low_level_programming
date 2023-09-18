@@ -7,9 +7,7 @@
 */
 int _atoi(char *s)
 {
-	int i = 0;
-	int start_i = 0;
-	int end_i = 0;
+	int i = 0, start_i = 0, end_i = 0;
 	int digit_encountered = 0;
 	int minus_count = 0;
 	int mul_10 = 1;
@@ -38,11 +36,12 @@ int _atoi(char *s)
 		}
 		i++;
 	}
-
-	for (i = end_i; i >= start_i; i--)
-	{
+	if (!(digit_encountered))
+		return (0);
+	result = ((int)s[end_i] - (int)'0');
+	for (i = end_i - 1; i >= start_i; i--)
+	{	mul_10 *= 10;
 		result += ((int) s[i] - (int)'0') * mul_10;
-		mul_10 *= 10;
 	}
 	if (minus_count % 2)
 		result = -(result);
