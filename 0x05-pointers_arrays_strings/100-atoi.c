@@ -11,7 +11,7 @@ int _atoi(char *s)
 	int digit_encountered = 0;
 	int minus_count = 0;
 	int mul_10 = 1;
-	int result = 0;
+	unsigned int result = 0;
 
 	while (s[i] != 0)
 	{
@@ -44,6 +44,6 @@ int _atoi(char *s)
 		result += ((int) s[i] - (int)'0') * mul_10;
 	}
 	if (minus_count % 2)
-		result = -(result);
-	return (result);
+		result = (int)-(result);
+	return (int)(result);
 }
