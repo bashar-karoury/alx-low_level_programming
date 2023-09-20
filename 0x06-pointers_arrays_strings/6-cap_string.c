@@ -18,7 +18,7 @@ char *cap_string(char *s)
 				(s[idx - 1] == '{') || (s[idx - 1] == '}') ||\
 				(s[idx - 1] == '\n') || (s[idx - 1] == '\t') ||\
 				(s[idx - 1] == ' '))
-		{	
+		{
 			if (s[idx] >= 'a' && s[idx] <= 'z')
 			{
 				s[idx] = s[idx] - 0x20;
