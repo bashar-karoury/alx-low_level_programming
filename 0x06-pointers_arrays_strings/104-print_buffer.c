@@ -12,7 +12,7 @@ void print_buffer(char *b, int size)
 	unsigned int rem = (10 - (size % 10));
 	unsigned int _size, i = 0;
 
-	_size = (size % 10) ? size + rem : (unsigned int)size;
+	_size = (!(size % 10)) ? (unsigned int)size : size + rem;
 	if (size <= 0)
 	{
 		printf("\n");
@@ -37,7 +37,7 @@ void print_buffer(char *b, int size)
 				{
 					if ((i - 9 + j) >= (unsigned int)size)
 						printf(" ");
-					else if (b[(i - 9) + j] < 0x20)
+					else if ((b[(i - 9) + j] < 0x20) || (b[(i - 9) + j] >= 0x7F))
 						printf(".");
 					else
 						printf("%c", b[(i - 9) + j]);
