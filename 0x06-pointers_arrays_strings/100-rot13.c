@@ -20,7 +20,7 @@ char *rot13(char *s)
 	int i;
 
 	while (s[idx] != '\0')
-    {
+	{
 		for (i = 0; i < 52; i++)
 		{
 			if (s[idx] == keys[i])
