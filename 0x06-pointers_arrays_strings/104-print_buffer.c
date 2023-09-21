@@ -35,8 +35,10 @@ void print_buffer(char *b, int size)
 			{
 				printf(" ");
 				for (j = 0; j < 10; j++)
-				{
-					if (b[(i - 9) + j] < 0x20)
+				{	
+					if ((i - 9 + j) >= (unsigned int)size)
+						printf(" ");
+					else if (b[(i - 9) + j] < 0x20)
 						printf(".");
 					else
 						printf("%c", b[(i - 9) + j]);
