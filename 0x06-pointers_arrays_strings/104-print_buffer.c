@@ -20,7 +20,6 @@ void print_buffer(char *b, int size)
 	}
 	else
 	{
-		printf("_size = %u\n", _size);
 		for (i = 0; i < _size; i++)
 		{
 			if (!(i % 10))
