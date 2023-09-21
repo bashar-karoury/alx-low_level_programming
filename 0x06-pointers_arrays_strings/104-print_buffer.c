@@ -10,7 +10,11 @@ void print_buffer(char *b, int size)
 {
 	int j;
 	unsigned int rem = (10 - (size % 10));
-	unsigned int _size = size + rem;
+	unsigned int _size;
+	if(size % 10)
+		_size = size + rem;
+	else
+		_size = size;
 
 	if (size <= 0)
 	{
@@ -20,7 +24,7 @@ void print_buffer(char *b, int size)
 	else
 	{
 		unsigned int i = 0;
-
+		printf("_size = %u\n", _size);
 		for (i = 0; i < _size; i++)
 		{
 			if (!(i % 10))
