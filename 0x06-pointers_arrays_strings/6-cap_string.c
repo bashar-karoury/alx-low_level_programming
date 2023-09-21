@@ -12,6 +12,8 @@ char *cap_string(char *s)
 
 	for (idx = 1; s[idx] != '\0'; idx++)
 	{
+		if (s[idx] == '\t')
+			s[idx] = ' ';
 		check = 0;
 		check = check || (s[idx - 1] == ',') || (s[idx - 1] == ';');
 		check = check || (s[idx - 1] == '\"') || (s[idx - 1] == '(');
