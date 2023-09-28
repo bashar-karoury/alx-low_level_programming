@@ -10,7 +10,7 @@ int check_reminders(int n, int i);
 */
 int is_prime_number(int n)
 {
-	if (n <= 1) 
+	if (n <= 1)
 	{
 		return (0);
 	}
@@ -19,16 +19,23 @@ int is_prime_number(int n)
 		return (1);
 	}
 
-	return check_reminders(n, n - 1);
-
+	return (check_reminders(n, n - 1));
 }
 
-int check_reminders(int n, int i)	
+/**
+* check_reminders - check if number if prime
+* @n: number to be tested.
+* @i: starting number to be tested decreasingly
+*
+* Return: 1 if number can't be divided by all integers from i to 1
+ */
+int check_reminders(int n, int i)
 {
 	int check = 0;
+
 	if (i == 1)
-		return 1;
+		return (1);
 
 	check = (n % i) == 0 ? 0 : 1;
-	return (check & check_reminders(n, i-1));
+	return (check & check_reminders(n, i - 1));
 }
