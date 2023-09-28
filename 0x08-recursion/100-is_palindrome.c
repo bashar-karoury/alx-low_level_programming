@@ -45,7 +45,7 @@ int check_palindrome(char *s, int start, int end)
 int string_length(char *s)
 {
 	if (*s == '\0')
-		return 0;
+		return (0);
 
 	return (1 + string_length(s + 1));
 }
