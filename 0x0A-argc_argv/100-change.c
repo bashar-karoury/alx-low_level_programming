@@ -27,7 +27,6 @@ int main(int argc, char **argv)
 		{
 			while (n)
 			{
-				printf("n = %d  , coins[i] = %d\n", n, coins[i]);
 				if ((n / coins[i]))
 				{
 					n -= coins[i];
