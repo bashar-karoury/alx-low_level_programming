@@ -6,7 +6,8 @@
 * @argv: char pointer to array of command line arguments
 *
 * Return: program status as int
-* */
+*
+*/
 int main(int __attribute__((__unused__)) argc, char **argv)
 {
 	printf("%s\n", argv[0]);
