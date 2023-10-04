@@ -29,8 +29,7 @@ char **strtow(char *str)
 	}
 
 	w_c = count_words(str);
-	if (w_c)
-		strings = (char **)malloc((sizeof(char *) * w_c) + 1);  /*:NULL*/
+	strings = (char **)malloc((sizeof(char *) * w_c) + 1);  /*:NULL*/
 
 	if (strings != NULL)
 	{
