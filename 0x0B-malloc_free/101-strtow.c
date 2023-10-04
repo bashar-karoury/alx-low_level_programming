@@ -100,7 +100,7 @@ char **strtow(char *str)
 int count_words(char *str)
 {
 	int i = 0;
-	int space_encountered = 0;
+	int space_encountered = 1;
 	int count = 0;
 
 	while (str[i] != '\0')
