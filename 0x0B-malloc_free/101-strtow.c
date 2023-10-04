@@ -60,6 +60,21 @@ char **strtow(char *str)
 			}
 			i++;
 		}
+		if (c)
+		{
+			strings[idx] = (char *)malloc((sizeof(char) * c) + 1);
+			if (strings[idx] != NULL)
+			{
+				strncopy(strings[idx], &(str[i - c]), c);
+				strings[idx][c] = '\0';
+				idx++;
+			}
+			else
+			{
+				not_alloc = 1;
+			}
+		}
+
 		strings[idx] = NULL;
 	}
 	if (not_alloc)
