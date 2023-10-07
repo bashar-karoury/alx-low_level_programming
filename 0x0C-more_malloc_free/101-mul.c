@@ -59,7 +59,7 @@ int main(int argc, char **argv)
 
 	multiply(n1, n2, n1_len, n2_len, n3);
 
-	if (n3[n3_len - 1] == 0)
+	while (n3[n3_len - 1] == 0)
 	{
 		n3_len--;
 	}
