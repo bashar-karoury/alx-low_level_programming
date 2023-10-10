@@ -28,6 +28,7 @@ dog_t *new_dog(char *name, float age, char *owner)
 		}
 		else
 		{
+			free(dog);
 			return (NULL);
 		}
 
@@ -38,6 +39,8 @@ dog_t *new_dog(char *name, float age, char *owner)
 		}
 		else
 		{
+			free(dog->name);
+			free(dog);
 			return (NULL);
 		}
 
