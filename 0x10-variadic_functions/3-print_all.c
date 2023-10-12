@@ -8,16 +8,19 @@
 void print_all(const char * const format, ...)
 {
 	va_list args_p;
-	unsigned int i = 0;
+	int i = 0;
 	char *str = NULL;
+	int not_first = 0;
 
 	va_start(args_p, format);
 	while (format[i] != '\0')
 	{
-		if ((i) && (format[i] == 's' || format[i] == 'i'
+		if ((i) && (not_first) && (format[i] == 's' || format[i] == 'i'
 					|| format[i] == 'f' || format[i] == 'c'))
+		{
 			printf(", ");
-		switch (format[i])
+		}
+		switch (format[i++])
 		{
 			case 'c':
 				printf("%c", va_arg(args_p, int));
@@ -38,10 +41,9 @@ void print_all(const char * const format, ...)
 				printf("%s", str);
 				break;
 			default:
-				valid = 0;
-				break;
+				continue;
 		}
-		i++;
+		not_first = 1;
 	}
 	printf("\n");
 	va_end(args_p);
