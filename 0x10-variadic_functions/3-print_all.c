@@ -45,6 +45,6 @@ void print_all(const char * const format, ...)
 		}
 		not_first = 1;
 	}
-	while ((not_first--) > 0)
+	va_end(args_p);
 		printf("\n");
 }
