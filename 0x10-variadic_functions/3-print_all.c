@@ -12,11 +12,9 @@ void print_all(const char * const format, ...)
 	char *str = NULL;
 	int not_first = 0;
 
-	if (format == NULL)
-		return;
 	va_start(args_p, format);
-	while ((format[i] != '\0') && (format != NULL))
-	{
+	while ((format != NULL) && (format[i] != '\0'))
+	{	
 		if ((i) && (not_first) && (format[i] == 's' || format[i] == 'i'
 					|| format[i] == 'f' || format[i] == 'c'))
 		{
