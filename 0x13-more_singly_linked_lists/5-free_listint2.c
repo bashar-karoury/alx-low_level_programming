@@ -7,7 +7,7 @@
 */
 void free_listint2(listint_t **head)
 {
-	if (*head != NULL)
+	if (head != NULL)
 	{
 		listint_t *traverse_node = *head;
 		listint_t *temp_node = *head;
