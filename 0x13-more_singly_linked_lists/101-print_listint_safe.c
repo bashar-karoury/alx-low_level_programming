@@ -12,6 +12,7 @@ size_t print_listint_safe(const listint_t *head)
 	const listint_t *trav_node = NULL;
 	const listint_t *check_node = NULL;
 	int loop = 0;
+	size_t n = 0;
 
 	if (head == NULL)
 	{
