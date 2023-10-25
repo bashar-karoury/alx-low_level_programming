@@ -13,6 +13,7 @@ size_t print_listint_safe(const listint_t *head)
 	const listint_t *check_node = NULL;
 	int loop = 0;
 	size_t n = 0;
+	size_t i = 0;
 
 	if (head == NULL)
 	{
@@ -23,7 +24,8 @@ size_t print_listint_safe(const listint_t *head)
 	while (trav_node != NULL)
 	{
 		check_node = head;
-		while (check_node != NULL)
+		i = 0;
+		while (check_node != NULL && (i < n))
 		{
 			if (trav_node == check_node)
 			{
@@ -31,6 +33,7 @@ size_t print_listint_safe(const listint_t *head)
 				break;
 			}
 			check_node = check_node->next;
+			i++;
 		}
 		if (loop)
 		{
