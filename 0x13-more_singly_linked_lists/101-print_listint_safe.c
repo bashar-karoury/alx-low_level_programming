@@ -11,7 +11,7 @@ size_t print_listint_safe(const listint_t *head)
 {
 	const listint_t *trav_node = NULL;
 	size_t n = 0;
-	const listint_t *array_nodes[100] = {0};
+	const listint_t *array_nodes[1000] = {0};
 	int i = 0;
 	int array_len = 0;
 	int loop = 0;
