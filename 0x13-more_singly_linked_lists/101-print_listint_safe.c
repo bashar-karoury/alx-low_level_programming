@@ -15,11 +15,6 @@ size_t print_listint_safe(const listint_t *head)
 	size_t n = 0;
 	size_t i = 0;
 
-	if (head == NULL)
-	{
-		exit(98);
-	}
-
 	trav_node = head;
 	while (trav_node != NULL)
 	{
