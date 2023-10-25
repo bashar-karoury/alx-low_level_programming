@@ -9,8 +9,8 @@
 */
 listint_t *find_listint_loop(listint_t *head)
 {
-	const listint_t *check_node = NULL;
-	const listint_t *h = head;
+	listint_t *check_node = NULL;
+	listint_t *h = head;
 
 	while (head != NULL)
 	{
