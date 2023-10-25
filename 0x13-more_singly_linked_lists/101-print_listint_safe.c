@@ -10,10 +10,7 @@
 size_t print_listint_safe(const listint_t *head)
 {
 	const listint_t *trav_node = NULL;
-	size_t n = 0;
-	const listint_t *array_nodes[2000] = {0};
-	int i = 0;
-	int array_len = 0;
+	const listint_t *check_node = NULL;
 	int loop = 0;
 
 	if (head == NULL)
@@ -24,13 +21,15 @@ size_t print_listint_safe(const listint_t *head)
 	trav_node = head;
 	while (trav_node != NULL)
 	{
-		for (i = 0; i < array_len; i++)
+		check_node = head;
+		while (check_node != NULL)
 		{
-			if (trav_node == array_nodes[i])
+			if (trav_node == check_node)
 			{
 				loop = 1;
 				break;
 			}
+			check_node = check_node->next;
 		}
 		if (loop)
 		{
@@ -38,7 +37,6 @@ size_t print_listint_safe(const listint_t *head)
 			break;
 		}
 		printf("[%p] %d\n", (void *)trav_node, trav_node->n);
-		array_nodes[array_len++] = trav_node;
 		trav_node = trav_node->next;
 		n++;
 	}
