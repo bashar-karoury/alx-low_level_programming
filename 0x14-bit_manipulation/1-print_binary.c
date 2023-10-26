@@ -8,8 +8,9 @@ void print_binary(unsigned long int n)
 	int i = 0;
 	int temp = 0;
 	int first_one_flag = 0;
+	int max = (sizeof(unsigned long int) * 8)
 
-	for (i = 31; i >= 0; i--)
+	for (i = max - 1; i >= 0; i--)
 	{
 		temp = ((n >> i) & 0x01);
 		if (temp)
