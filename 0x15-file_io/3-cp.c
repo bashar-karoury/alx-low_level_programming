@@ -26,7 +26,8 @@ int main(int ac, char **av)
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-
+	if(av[1] == NULL || av[2] == NULL)
+		return (0);
 	file_to_fd =  open(av[2], O_CREAT | O_TRUNC | O_WRONLY, S_IRUSR | S_IWUSR
 			| S_IRGRP | S_IWGRP | S_IROTH);
 
