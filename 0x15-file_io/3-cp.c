@@ -4,7 +4,6 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
-int write_buffer(int fd, char ch, int end_flag);
 void exit_print_stderr(int exitcode, int fd_r, int fd_w, char **av);
 /**
  * main - check the code
@@ -26,7 +25,7 @@ int main(int ac, char **av)
 		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	if(av[1] == NULL || av[2] == NULL)
+	if (av[1] == NULL || av[2] == NULL)
 		return (0);
 	file_to_fd =  open(av[2], O_CREAT | O_TRUNC | O_WRONLY, S_IRUSR | S_IWUSR
 			| S_IRGRP | S_IWGRP | S_IROTH);
@@ -56,40 +55,6 @@ int main(int ac, char **av)
 }
 
 /**
- * write_buffer - write to file using buffer
- * @fd: file describtor to write to
- * @ch: character to be written
- * @end_flag: flag that indicates end of file so remaining of buffer
- * sould be written
- *
- * Return: result of write
- */
-int write_buffer(int fd, char ch, int end_flag)
-{
-	static char buffer[1024] = {0};
-	static int idx;
-	int result = 1;
-
-	if (end_flag && idx)
-	{
-		result =  write(fd, buffer, idx);
-		return (result);
-	}
-
-	if (idx < 1024)
-	{
-		buffer[idx++] = ch;
-	}
-	else
-	{
-		result =  write(fd, buffer, 1024);
-		idx = 0;
-	}
-
-	return (result);
-}
-
-/**
  * exit_print_stderr - exit with passed exitcode and print to stderr
  * @exitcode: exitcode
  * @fd_r: read file describtor
@@ -109,14 +74,20 @@ void exit_print_stderr(int exitcode, int fd_r, int fd_w, char **av)
 			exit(99);
 			break;
 	}
-	if (close(fd_r))
+	if (fd_r > 0)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_r);
-		exit(100);
+		if (close(fd_r))
+		{
+			dprintf(2, "Error: Can't close fd %d\n", fd_r);
+			exit(100);
+		}
 	}
-	if (close(fd_w))
+	if (fd_w > 0)
 	{
-		dprintf(2, "Error: Can't close fd %d\n", fd_w);
-		exit(100);
+		if (close(fd_w))
+		{
+			dprintf(2, "Error: Can't close fd %d\n", fd_w);
+			exit(100);
+		}
 	}
 }
