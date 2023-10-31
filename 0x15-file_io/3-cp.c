@@ -50,9 +50,6 @@ int main(int ac, char **av)
 			exit_print_stderr(99, file_from_fd, file_to_fd, av);
 		}
 	}
-
-	if (write_result == -1)
-		result = 99;
 	exit_print_stderr(result, file_from_fd, file_to_fd, av);
 	return (0);
 }
