@@ -3,7 +3,7 @@
 #include "main.h"
 #include <fcntl.h>
 #include <unistd.h>
-
+#include <stdlib.h>
 int write_buffer(int fd, char ch, int end_flag);
 void exit_print_stderr(int exitcode, int fd_r, int fd_w, char **av);
 /**
@@ -17,12 +17,13 @@ int main(int ac, char **av)
 {
 	int file_to_fd = -1;
 	int file_from_fd = -1;
-	char ch;
-	int write_result = 1, read_result = 1, result = 0;
+	int write_result = 1, result = 0;
+	int read_count = 1;
+	char buffer[1024] = {0};
 
 	if (ac != 3)
 	{
-		dprintf(2, "Usage: %s file_from file_to\n", av[0]);
+		dprintf(2, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
 
@@ -36,23 +37,20 @@ int main(int ac, char **av)
 	if (file_from_fd < 0)
 		exit_print_stderr(98, file_from_fd, file_to_fd, av);
 
-	while ((result == 0) && (read_result == 1))
+	while ((result == 0) && (read_count > 0))
 	{
-		read_result = read(file_from_fd, &ch, 1);
-		if (read_result == 0)
-			break;
-		if (read_result == -1)
+		read_count = read(file_from_fd, buffer, 1024);
+		if (read_count == -1)
 		{
 			exit_print_stderr(98, file_from_fd, file_to_fd, av);
 		}
-		write_result =  write_buffer(file_to_fd, ch, 0);
-		if (write_result == -1)
+		write_result =  write(file_to_fd, buffer, read_count);
+		if ((write_result == -1) || (write_result != read_count))
 		{
 			exit_print_stderr(99, file_from_fd, file_to_fd, av);
 		}
 	}
 
-	write_result =  write_buffer(file_to_fd, ch, 1);
 	if (write_result == -1)
 		result = 99;
 	exit_print_stderr(result, file_from_fd, file_to_fd, av);
