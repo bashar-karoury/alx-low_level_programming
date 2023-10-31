@@ -60,14 +60,14 @@ int main(int ac, char **av)
 }
 
 /**
-* write_buffer - write to file using buffer
-* @fd: file describtor to write to
-* @ch: character to be written
-* @end_flag: flag that indicates end of file so remaining of buffer
-* sould be written
-*
-* Return: result of write
-*/
+ * write_buffer - write to file using buffer
+ * @fd: file describtor to write to
+ * @ch: character to be written
+ * @end_flag: flag that indicates end of file so remaining of buffer
+ * sould be written
+ *
+ * Return: result of write
+ */
 int write_buffer(int fd, char ch, int end_flag)
 {
 	static char buffer[1024] = {0};
@@ -94,19 +94,14 @@ int write_buffer(int fd, char ch, int end_flag)
 }
 
 /**
-* exit_print_stderr - exit with passed exitcode and print to stderr
-* @exitcode: exitcode
-* @fd_r: read file describtor
-* @fd_w: write file describtor
-* @av: arguments passed to main
-*/
+ * exit_print_stderr - exit with passed exitcode and print to stderr
+ * @exitcode: exitcode
+ * @fd_r: read file describtor
+ * @fd_w: write file describtor
+ * @av: arguments passed to main
+ */
 void exit_print_stderr(int exitcode, int fd_r, int fd_w, char **av)
 {
-	if (close(fd_r))
-		exitcode = 101;
-	if (close(fd_w))
-		exitcode = 100;
-
 	switch (exitcode)
 	{
 		case 98:
@@ -117,14 +112,15 @@ void exit_print_stderr(int exitcode, int fd_r, int fd_w, char **av)
 			dprintf(2, "Error: Can't write to %s\n", av[2]);
 			exit(99);
 			break;
-		case 100:
-			dprintf(2, "Error: Can't close fd %d\n", fd_w);
-			exit(100);
-			break;
-		case 101:
-			dprintf(2, "Error: Can't close fd %d\n", fd_r);
-			exit(100);
-			break;
 	}
-
+	if (close(fd_r))
+	{
+		dprintf(2, "Error: Can't close fd %d\n", fd_r);
+		exit(100);
+	}
+	if (close(fd_w))
+	{
+		dprintf(2, "Error: Can't close fd %d\n", fd_w);
+		exit(100);
+	}
 }
