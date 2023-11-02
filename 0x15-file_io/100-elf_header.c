@@ -14,6 +14,7 @@ void  print_type(Elf64_Ehdr *header);
 void  print_entry(Elf64_Ehdr *header);
 void  print_type(Elf64_Ehdr *header);
 void  print_abi(Elf64_Ehdr *header);
+int  test_header(Elf64_Ehdr *header);
 /**
  * main - check the code
  * @ac: argument count
@@ -41,6 +42,8 @@ int main(int ac, char **av)
 	read_count = read(fd, &header, sizeof(Elf64_Ehdr));
 	if (read_count != sizeof(Elf64_Ehdr))
 		exit_with_98("Can't read header");
+	if (!(test_header(&header)))
+		exit_with_98("Not header file");
 	parse_and_print(&header);
 
 	return (0);
@@ -52,7 +55,7 @@ int main(int ac, char **av)
  */
 void exit_with_98(const char *msg)
 {
-	printf("%s\n", msg);
+	dprintf(2, "%s\n", msg);
 	exit(98);
 }
 
@@ -71,6 +74,30 @@ void parse_and_print(Elf64_Ehdr *header)
 	print_abi(header);
 	print_type(header);
 	print_entry(header);
+}
+
+
+/**
+ * test_header - test wether the file is header file
+ * @header: pointer to sturct of header file
+ *
+ *Return: test result 1: if pass, 0 if fail
+ */
+int  test_header(Elf64_Ehdr *header)
+{
+	int i = 0;
+	int test = 1;
+	char cmp[4] = {0x7f, 0x45, 0x4c, 0x46};
+
+	for (i = 0; i < 4; i++)
+	{
+		if (cmp[i] != header->e_ident[i])
+		{
+			test = 0;
+			break;
+		}
+	}
+	return (test);
 }
 
 /**
