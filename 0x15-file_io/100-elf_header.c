@@ -45,7 +45,7 @@ int main(int ac, char **av)
 	if (!(test_header(&header)))
 		exit_with_98("Not header file");
 	parse_and_print(&header);
-	if (!close(fd))
+	if (close(fd))
 	{
 		exit_with_98("Can't close file");
 	}
