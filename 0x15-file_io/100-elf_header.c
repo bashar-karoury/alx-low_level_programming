@@ -200,6 +200,7 @@ void  print_version(Elf32_Ehdr *header)
 			printf("  Version:                           %x (current)\n", version);
 			break;
 		default:
+			printf("  Version:                           %x (num)\n", version);
 			break;
 	}
 }
