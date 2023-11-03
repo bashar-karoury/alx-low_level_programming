@@ -75,7 +75,7 @@ int main(int ac, char **av)
  */
 void exit_with_98(const char *msg)
 {
-	dprintf(2, "%s\n", msg);
+	dprintf(STDERR_FILENO, "%s\n", msg);
 	exit(98);
 }
 
