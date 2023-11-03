@@ -176,7 +176,7 @@ void  print_data(Elf32_Ehdr *header)
 			printf(", little endian\n");
 			break;
 		case ELFDATA2MSB:
-			printf("  Data:                              2's complement, big-endian\n");
+			printf("  Data:                              2's complement, big endian\n");
 			break;
 		default:
 			break;
