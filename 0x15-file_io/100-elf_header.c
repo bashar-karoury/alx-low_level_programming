@@ -154,6 +154,8 @@ void  print_class(Elf32_Ehdr *header)
 			break;
 		case ELFCLASS64:
 			printf("  Class:                             ELF64\n");
+		default:
+			break;
 	}
 }
 /**
@@ -176,6 +178,8 @@ void  print_data(Elf32_Ehdr *header)
 		case ELFDATA2MSB:
 			printf("  Data:                              2's complement, big-endian\n");
 			break;
+		default:
+			break;
 	}
 
 }
@@ -185,15 +189,17 @@ void  print_data(Elf32_Ehdr *header)
  */
 void  print_version(Elf32_Ehdr *header)
 {
-	char version = header->e_ident[6];
+	unsigned char version = header->e_ident[6];
 
 	switch (version)
 	{
 		case EV_NONE:
-			printf("  Version:                           1 (none)\n");
+			printf("  Version:                           0 (none)\n");
 			break;
 		case EV_CURRENT:
 			printf("  Version:                           1 (current)\n");
+			break;
+		default:
 			break;
 	}
 }
@@ -236,6 +242,8 @@ void  print_os_abi(Elf32_Ehdr *header)
 			break;
 		case ELFOSABI_STANDALONE:
 			printf("  OS/ABI:                            Stand-alone (embedded)\n");
+			break;
+		default:
 			break;
 	}
 }
@@ -282,6 +290,8 @@ void  print_type(Elf32_Ehdr *header)
 			break;
 		case ET_CORE:
 			printf("  Type:                              CORE (Core file)\n");
+			break;
+		default:
 			break;
 	}
 }
