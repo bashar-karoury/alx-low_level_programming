@@ -262,7 +262,7 @@ void  print_type(Elf64_Ehdr *header)
 			printf("  Type:                              EXEC (Executable file)\n");
 			break;
 		case ET_DYN:
-			printf("  Type:                              DYN (Shared object)\n");
+			printf("  Type:                              DYN (Shared object file)\n");
 			break;
 		case ET_CORE:
 			printf("  Type:                              CORE (Core file)\n");
