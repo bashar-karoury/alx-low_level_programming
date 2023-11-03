@@ -193,11 +193,11 @@ void  print_version(Elf32_Ehdr *header)
 
 	switch (version)
 	{
-		case 0:
-			printf("  Version:                           0 (none)\n");
+		case EV_NONE:
+			printf("  Version:                           %x (none)\n", version);
 			break;
-		case 1:
-			printf("  Version:                           1 (current)\n");
+		case EV_CURRENT:
+			printf("  Version:                           %x (current)\n", version);
 			break;
 		default:
 			break;
