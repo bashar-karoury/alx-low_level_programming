@@ -40,10 +40,12 @@ int main(int ac, char **av)
 		exit_with_98("Can't seek start of the file");
 
 	read_count = read(fd, &header, sizeof(Elf64_Ehdr));
-	if (read_count != sizeof(Elf64_Ehdr))
-		exit_with_98("Can't read header");
+	if (read_count < -1)
+		exit_with_98("Can't read file");
 	if (!(test_header(&header)))
 		exit_with_98("Not header file");
+	if (read_count != sizeof(Elf64_Ehdr))
+		exit_with_98("Can't read complete header");
 	parse_and_print(&header);
 	if (close(fd))
 	{
