@@ -41,10 +41,12 @@ int main(int ac, char **av)
 
 	offset = lseek(fd, 0, SEEK_SET);
 	if (offset != 0)
+	{
+		close(fd);
 		exit_with_98("Can't seek start of the file");
-
+	}
 	read_count = read(fd, &header, sizeof(Elf32_Ehdr));
-	if (read_count < -1)
+	if (read_count < 0)
 	{
 		close(fd);
 		exit_with_98("Can't read file");
