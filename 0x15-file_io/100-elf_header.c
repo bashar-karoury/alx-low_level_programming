@@ -244,7 +244,7 @@ void  print_os_abi(Elf32_Ehdr *header)
 			printf("  OS/ABI:                            Stand-alone (embedded)\n");
 			break;
 		default:
-			printf("  OS/ABI:                            <unknown: 53>\n");
+			printf("  OS/ABI:                            <unknown: %c>\n", os);
 			break;
 	}
 }
