@@ -220,13 +220,13 @@ void  print_os_abi(Elf32_Ehdr *header)
 			printf("  OS/ABI:                            HP-UX\n");
 			break;
 		case ELFOSABI_NETBSD:
-			printf("  OS/ABI:                            NetBSD\n");
+			printf("  OS/ABI:                            UNIX - NetBSD\n");
 			break;
 		case ELFOSABI_LINUX:
 			printf("  OS/ABI:                            Linux\n");
 			break;
 		case ELFOSABI_SOLARIS:
-			printf("  OS/ABI:                            Solaris\n");
+			printf("  OS/ABI:                            UNIX - Solaris\n");
 			break;
 		case ELFOSABI_IRIX:
 			printf("  OS/ABI:                            IRIX\n");
