@@ -5,17 +5,17 @@
 #include <stdlib.h>
 #include "main.h"
 void  exit_with_98(const char *msg);
-void  parse_and_print(Elf64_Ehdr *header);
-void  print_magic(Elf64_Ehdr *header);
-void  print_class(Elf64_Ehdr *header);
-void  print_data(Elf64_Ehdr *header);
-void  print_version(Elf64_Ehdr *header);
-void  print_os_abi(Elf64_Ehdr *header);
-void  print_type(Elf64_Ehdr *header);
-void  print_entry(Elf64_Ehdr *header);
-void  print_type(Elf64_Ehdr *header);
-void  print_abi(Elf64_Ehdr *header);
-int  test_header(Elf64_Ehdr *header);
+void  parse_and_print(Elf32_Ehdr *header);
+void  print_magic(Elf32_Ehdr *header);
+void  print_class(Elf32_Ehdr *header);
+void  print_data(Elf32_Ehdr *header);
+void  print_version(Elf32_Ehdr *header);
+void  print_os_abi(Elf32_Ehdr *header);
+void  print_type(Elf32_Ehdr *header);
+void  print_entry(Elf32_Ehdr *header);
+void  print_type(Elf32_Ehdr *header);
+void  print_abi(Elf32_Ehdr *header);
+int  test_header(Elf32_Ehdr *header);
 /**
  * main - check the code
  * @ac: argument count
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 	int fd = -1;
 	off_t offset;
 	int read_count = 0;
-	Elf64_Ehdr  header;
+	Elf32_Ehdr  header;
 
 	if (ac != 2)
 		exit_with_98("Wrong number of arguments");
@@ -43,7 +43,7 @@ int main(int ac, char **av)
 	if (offset != 0)
 		exit_with_98("Can't seek start of the file");
 
-	read_count = read(fd, &header, sizeof(Elf64_Ehdr));
+	read_count = read(fd, &header, sizeof(Elf32_Ehdr));
 	if (read_count < -1)
 	{
 		close(fd);
@@ -54,7 +54,7 @@ int main(int ac, char **av)
 		close(fd);
 		exit_with_98("Not header file");
 	}
-	if (read_count != sizeof(Elf64_Ehdr))
+	if (read_count != sizeof(Elf32_Ehdr))
 	{
 		close(fd);
 		exit_with_98("Can't read complete header");
@@ -81,7 +81,7 @@ void exit_with_98(const char *msg)
  * parse_and_print - print content of header file
  * @header: pointer to struct of header file
  */
-void parse_and_print(Elf64_Ehdr *header)
+void parse_and_print(Elf32_Ehdr *header)
 {
 	printf("ELF Header:\n");
 	print_magic(header);
@@ -101,7 +101,7 @@ void parse_and_print(Elf64_Ehdr *header)
  *
  *Return: test result 1: if pass, 0 if fail
  */
-int  test_header(Elf64_Ehdr *header)
+int  test_header(Elf32_Ehdr *header)
 {
 	int i = 0;
 	int test = 1;
@@ -122,7 +122,7 @@ int  test_header(Elf64_Ehdr *header)
  * print_magic - print magic number
  * @header: pointer to sturct of header file
  */
-void  print_magic(Elf64_Ehdr *header)
+void  print_magic(Elf32_Ehdr *header)
 {
 	int i = 0;
 
@@ -138,7 +138,7 @@ void  print_magic(Elf64_Ehdr *header)
  * print_class - print class
  * @header: pointer to header file
  */
-void  print_class(Elf64_Ehdr *header)
+void  print_class(Elf32_Ehdr *header)
 {
 	char class = header->e_ident[4];
 
@@ -158,7 +158,7 @@ void  print_class(Elf64_Ehdr *header)
  * print_data - print data
  * @header: pointer to header file
  */
-void  print_data(Elf64_Ehdr *header)
+void  print_data(Elf32_Ehdr *header)
 {
 	char data = header->e_ident[5];
 
@@ -180,7 +180,7 @@ void  print_data(Elf64_Ehdr *header)
  * print_version - print version
  * @header: pointer to header file
  */
-void  print_version(Elf64_Ehdr *header)
+void  print_version(Elf32_Ehdr *header)
 {
 	char version = header->e_ident[6];
 
@@ -198,7 +198,7 @@ void  print_version(Elf64_Ehdr *header)
  * print_os_abi - print os abi fields
  * @header: pointer to header file
  */
-void  print_os_abi(Elf64_Ehdr *header)
+void  print_os_abi(Elf32_Ehdr *header)
 {
 	unsigned char os = header->e_ident[7];
 
@@ -240,7 +240,7 @@ void  print_os_abi(Elf64_Ehdr *header)
  * print_abi - print abi fields
  * @header: pointer to header file
  */
-void  print_abi(Elf64_Ehdr *header)
+void  print_abi(Elf32_Ehdr *header)
 {
 	printf("  ABI Version:                       %x\n", header->e_ident[8]);
 }
@@ -249,7 +249,7 @@ void  print_abi(Elf64_Ehdr *header)
  * print_entry - print entry field
  * @header: pointer to field
  */
-void  print_entry(Elf64_Ehdr *header)
+void  print_entry(Elf32_Ehdr *header)
 {
 	Elf64_Addr add = header->e_entry;
 
@@ -259,7 +259,7 @@ void  print_entry(Elf64_Ehdr *header)
  * print_type - print type field
  * @header: pointer to header file
  */
-void  print_type(Elf64_Ehdr *header)
+void  print_type(Elf32_Ehdr *header)
 {
 	uint16_t type = header->e_type;
 
