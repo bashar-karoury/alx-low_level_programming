@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "main.h"
 void  exit_with_98(const char *msg);
 void  parse_and_print(Elf64_Ehdr *header);
 void  print_magic(Elf64_Ehdr *header);
@@ -31,6 +32,9 @@ int main(int ac, char **av)
 	if (ac != 2)
 		exit_with_98("Wrong number of arguments");
 
+	if (av == NULL || (*av) == NULL)
+		exit_with_98("NULL argument");
+
 	fd =  open(av[1], O_RDONLY);
 	if (fd < 0)
 		exit_with_98("Can't open file for reading");
@@ -41,11 +45,20 @@ int main(int ac, char **av)
 
 	read_count = read(fd, &header, sizeof(Elf64_Ehdr));
 	if (read_count < -1)
+	{
+		close(fd);
 		exit_with_98("Can't read file");
+	}
 	if (!(test_header(&header)))
+	{
+		close(fd);
 		exit_with_98("Not header file");
+	}
 	if (read_count != sizeof(Elf64_Ehdr))
+	{
+		close(fd);
 		exit_with_98("Can't read complete header");
+	}
 	parse_and_print(&header);
 	if (close(fd))
 	{
