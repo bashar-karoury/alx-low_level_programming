@@ -173,6 +173,7 @@ void  print_data(Elf32_Ehdr *header)
 			break;
 		case ELFDATA2MSB:
 			printf("  Data:                              2's complement, big-endian\n");
+			break;
 	}
 
 }
@@ -251,9 +252,9 @@ void  print_abi(Elf32_Ehdr *header)
  */
 void  print_entry(Elf32_Ehdr *header)
 {
-	Elf64_Addr add = header->e_entry;
+	Elf32_Addr add = header->e_entry;
 
-	printf("  Entry point address:               %p\n", (void *)add);
+	printf("  Entry point address:               0x%x\n", add);
 }
 /**
  * print_type - print type field
