@@ -1,6 +1,6 @@
 #include "lists.h"
 #include <stdlib.h>
-
+#include <stdio.h>
 /**
  * insert_dnodeint_at_index - insert node at index in double linked list
  * @h: double pointer to head pointer of list
@@ -46,7 +46,8 @@ dlistint_t *insert_dnodeint_at_index(dlistint_t **h, unsigned int idx, int n)
 		next_node = trav_node->next;
 	}
 	new_node->next = next_node;
-	next_node->prev = new_node;
+	if (next_node)
+		next_node->prev = new_node;
 	new_node->prev = prev_node;
 	prev_node->next = new_node;
 	return (new_node);
