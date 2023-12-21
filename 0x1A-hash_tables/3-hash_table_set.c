@@ -16,6 +16,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	/*Check hash table*/
 	if (ht == NULL)
 		return (0);
+	if (strlen(key) == 0)
+		return (0);
 	/*Calculate hash of key*/
 	index = key_index((const unsigned char *)key, ht->size);
 
