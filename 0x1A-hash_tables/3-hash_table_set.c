@@ -30,7 +30,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(new_element);
 		return (0);
 	}
-
+	strcpy(new_element->key, key);
 	/*Allcoate value memeory for new node*/
 	new_element->value = malloc(strlen(value) + 1);
 	if (new_element->value == NULL)
@@ -39,6 +39,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		free(new_element);
 		return (0);
 	}
+	strcpy(new_element->value, value);
 	/*Get head node at index*/
 	head_element = ht->array[index];
 	/*head now is the new element*/
