@@ -1,5 +1,6 @@
 #include "hash_tables.h"
 #include <string.h>
+hash_node_t *get_item_from_bucket(hash_node_t *head, const char *key);
 /**
  * hash_table_set - adds element to the hash table
  * @ht: pointer to hash table
@@ -11,21 +12,26 @@
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int index;
-	hash_node_t *new_element = NULL;
-	hash_node_t *head_element = NULL;
-	/*Check hash table*/
-	if (ht == NULL)
-		return (0);
-	if (strlen(key) == 0)
-		return (0);
-	/*Calculate hash of key*/
-	index = key_index((const unsigned char *)key, ht->size);
+	char *new_value = NULL;
+	hash_node_t *new_element = NULL, *head_element = NULL, *update_element = NULL;
 
-	/*Allocate memory for new element*/
+	if (ht == NULL || strlen(key))
+		return (0);
+	index = key_index((const unsigned char *)key, ht->size);
+	head_element = ht->array[index];
+	update_element = get_item_from_bucket(head_element, key);
+	if (update_element)
+	{
+		new_value = malloc(strlen(value) + 1);
+		if (!new_value)
+			return (0);
+		free(update_element->value);
+		update_element->value = new_value;
+		return (1);
+	}
 	new_element = malloc(sizeof(hash_node_t));
 	if (new_element == NULL)
 		return (0);
-	/*Allocate key memory for new node*/
 	new_element->key = malloc(strlen(key) + 1);
 	if (new_element->key == NULL)
 	{
@@ -33,7 +39,6 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	strcpy(new_element->key, key);
-	/*Allcoate value memeory for new node*/
 	new_element->value = malloc(strlen(value) + 1);
 	if (new_element->value == NULL)
 	{
@@ -42,10 +47,27 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		return (0);
 	}
 	strcpy(new_element->value, value);
-	/*Get head node at index*/
-	head_element = ht->array[index];
-	/*head now is the new element*/
 	new_element->next = head_element;
 	ht->array[index] = new_element;
 	return (1);
+}
+
+/**
+ * get_item_from_bucket - search for item using key
+ * @head: head node of index
+ * @key: key to search for
+ *
+ * Return: node if found or NULL otherwise
+ */
+hash_node_t *get_item_from_bucket(hash_node_t *head, const char *key)
+{
+	while (head != NULL)
+	{
+		if (strcmp(head->key, key) == 0)
+		{
+			return (head);
+		}
+		head = head->next;
+	}
+	return (NULL);
 }
