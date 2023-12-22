@@ -26,6 +26,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 		new_value = malloc(strlen(value) + 1);
 		if (!new_value)
 			return (0);
+		strcpy(new_value, value);
 		free(update_element->value);
 		update_element->value = new_value;
 		return (1);
