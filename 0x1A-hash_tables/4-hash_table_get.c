@@ -15,7 +15,7 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 	hash_node_t *head = NULL;
 
 	/*Check hash table*/
-	if (ht == NULL)
+	if (ht == NULL || key == NULL)
 		return (NULL);
 	if (strlen(key) == 0)
 		return (NULL);
