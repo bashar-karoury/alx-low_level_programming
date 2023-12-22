@@ -15,6 +15,7 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 	unsigned long int index;
 	char *new_value = NULL;
 	hash_node_t *new_element = NULL, *head_element = NULL, *update_element = NULL;
+
 	if (ht == NULL || strlen(key) == 0)
 		return (0);
 	index = key_index((const unsigned char *)key, ht->size);
@@ -64,7 +65,7 @@ hash_node_t *get_item_from_bucket(hash_node_t *head, const char *key)
 	while (head != NULL)
 	{
 		if (strcmp(head->key, key) == 0)
-		{	
+		{
 			return (head);
 		}
 		head = head->next;
