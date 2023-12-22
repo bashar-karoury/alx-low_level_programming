@@ -34,7 +34,6 @@ char *hash_table_get(const hash_table_t *ht, const char *key)
 		{
 			return (head->value);
 		}
-		printf("%s\n", head->key);
 		head = head->next;
 	}
 	return (NULL);
