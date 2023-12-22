@@ -21,7 +21,6 @@ hash_table_t *hash_table_create(unsigned long int size)
 		return (NULL);
 	}
 	new_ht->array = arr;
-	new_ht->count = 0;
 	return (new_ht);
 
 }
