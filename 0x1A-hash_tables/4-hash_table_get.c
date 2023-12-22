@@ -1,6 +1,13 @@
 #include "hash_tables.h"
 #include <string.h>
 #include <stdio.h>
+/**
+ * hash_table_get - retrives a value associated with a key
+ * @ht: pointer to hash table
+ * @key: key to retrieve its value
+ *
+ * Return: value of key
+ */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
 
