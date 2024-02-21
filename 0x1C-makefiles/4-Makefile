@@ -5,7 +5,7 @@ SRC = main.c school.c
 NAME = school
 RM = rm
 OBJ = $(SRC:%.c=%.o)
-CFLAGS := -Wall -Werror -Wextra -pedantic
+CFLAGS = -Wall -Werror -Wextra -pedantic
 .PHONY: clean oclean fclean re
 
 %.o:%.c
