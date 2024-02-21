@@ -5,11 +5,11 @@ SRC = main.c school.c
 NAME = school
 RM = rm
 OBJ = $(SRC:%.c=%.o)
-CFLAG := -Wall -Werror -Wextra -pedantic
+CFLAGS := -Wall -Werror -Wextra -pedantic
 .PHONY: clean oclean fclean re
 
 %.o:%.c
-	$(CC) $(CFLAG) -o $@ -c $<
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 all: $(OBJ)
 	$(CC) -o $(NAME) $^
