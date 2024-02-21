@@ -12,7 +12,7 @@ CFLAG = -Wall -Werror -Wextra -pedantic
 	$(CC) $(CFLAG) -o $@ -c $<
 
 all: $(OBJ)
-	$(CC) $(CFLAG) -o $(NAME) $^
+	$(CC) -o $(NAME) $^
 clean:
 	$(RM) -f .*.swp *~ ~* $(NAME)
 oclean:
