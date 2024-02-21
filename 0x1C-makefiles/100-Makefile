@@ -1,22 +1,21 @@
 # 4-MakeFile to build executable
-
 CC = gcc
+GCC = $(CC)
 SRC = main.c school.c
 NAME = school
-RM = rm
 OBJ = $(SRC:%.c=%.o)
 CFLAGS = -Wall -Werror -Wextra -pedantic
+GCCFLAGS = $(CFLAGS)
+TRM = $(RM)
 .PHONY: clean oclean fclean re
 
-%.o:%.c
-	$(CC) $(CFLAGS) -o $@ -c $<
 
 all: $(OBJ)
-	$(CC) -o $(NAME) $^
+	$(GCC) -o $(NAME) $(SRC) $(CFLAGS)
 clean:
-	$(RM) -f .*.swp *~ ~* $(NAME)
+	$(TRM) -f .*.swp *~ ~* $(NAME)
 oclean:
-	$(RM) -f $(OBJ)  $(NAME)
+	$(TRM) -f $(OBJ)  $(NAME)
 
 fclean:clean oclean
 
