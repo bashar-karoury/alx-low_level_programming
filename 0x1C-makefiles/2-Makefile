@@ -1,0 +1,12 @@
+# 0-MakeFile to build executable
+
+CC = gcc
+SRC = main.c school.c
+NAME = school
+OBJ = $(SRC:%.c=%.o)
+.PHONY: all
+%.o:%.c
+	$(CC) -o $@ -c $<
+
+all: $(OBJ)
+	$(CC) -o $(NAME) $^
