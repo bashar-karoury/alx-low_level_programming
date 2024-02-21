@@ -1,0 +1,22 @@
+# 0-MakeFile to build executable
+
+CC = gcc
+SRC = main.c school.c
+NAME = school
+RM = rm
+OBJ = $(SRC:%.c=%.o)
+.PHONY: clean oclean fclean re
+
+%.o:%.c
+	$(CC) -o $@ -c $<
+
+all: $(OBJ)
+	$(CC) -o $(NAME) $^
+clean:
+	$(RM) -f .*.swp *~ ~* $(NAME)
+oclean:
+	$(RM) -f $(OBJ)  $(NAME)
+
+fclean:clean oclean
+
+re: oclean all
