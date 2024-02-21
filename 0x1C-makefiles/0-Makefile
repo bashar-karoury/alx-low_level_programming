@@ -1,0 +1,6 @@
+# 0-MakeFile to build executable
+
+all:school
+
+school:main.c school.c
+	gcc -o school main.c school.c
