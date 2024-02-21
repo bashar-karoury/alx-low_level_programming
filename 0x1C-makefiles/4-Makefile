@@ -1,11 +1,11 @@
-# 0-MakeFile to build executable
+# 4-MakeFile to build executable
 
 CC = gcc
 SRC = main.c school.c
 NAME = school
 RM = rm
 OBJ = $(SRC:%.c=%.o)
-CFLAG = -Wall -Werror -Wextra -pedantic
+CFLAG := -Wall -Werror -Wextra -pedantic
 .PHONY: clean oclean fclean re
 
 %.o:%.c
