@@ -22,6 +22,8 @@ int jump_search(int *array, size_t size, int value)
 	int pre_idx = 0;
 	int next_idx = step;
 
+	if (array == NULL)
+		return (-1);
 	if (value > array[size - 1])
 		return (-1);
 	/* determine the interval */
