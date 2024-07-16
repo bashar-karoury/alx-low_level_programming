@@ -18,6 +18,7 @@ int exponential_search(int *array, size_t size, int value)
 	size_t idx = 1;
 	size_t s = 0;
 	size_t e = 0;
+	int result = -1;
 
 	if (array == NULL)
 		return (-1);
@@ -39,7 +40,11 @@ int exponential_search(int *array, size_t size, int value)
 	s = idx / 2;
 	e = MIN(idx, size - 1);
 	printf("Value found between indexes [%ld] and [%ld]\n", s, e);
-	return (binary_search(array + s, e - s + 1, value) + s);
+	result = (binary_search(array + s, e - s + 1, value));
+	if (result == -1)
+		return (-1);
+	else
+		return (result + s);
 }
 
 /**
