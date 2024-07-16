@@ -24,23 +24,23 @@ int interpolation_search(int *array, size_t size, int value)
 	if (array == NULL)
 		return (-1);
 
+	printf("size of array = %ld\n", size);
 	while (pos <= high)
 	{
-		/* check value at position */
 		printf("Value checked array[%ld] = [%d]\n", pos, array[pos]);
 		if (value == array[pos])
 		{
+			while (value == array[pos - 1] && pos > 0)
+				pos--;
 			result = pos;
 			break;
 		}
 		else if (value > array[pos])
 		{
-			/* re calculate the pos for the prev sub array */
 			low = pos + 1;
 		}
 		else
 		{
-			/* re calculate the pos of the next sub array */
 			high = pos - 1;
 		}
 
