@@ -19,22 +19,21 @@ int jump_search(int *array, size_t size, int value)
 	int step = sqrt(size);
 	int i = 0;
 
-	int pre_idx = 0;
-	int next_idx = step;
+	int idx = 0;
 
 	if (array == NULL)
 		return (-1);
 	if (value > array[size - 1])
 		return (-1);
 	/* determine the interval */
-	while (value > array[next_idx])
+	while (value > array[idx])
 	{
-		pre_idx = next_idx;
-		next_idx += step;
+		printf("Value checked array[%d] = [%d]\n", idx, array[idx]);
+		idx += step;
 	}
-	printf("Value found between indexes [%d] and [%d]\n", pre_idx, next_idx);
+	printf("Value found between indexes [%d] and [%d]\n", idx - step, idx);
 	/* Now check interval one be one */
-	for (i = pre_idx; i <= next_idx; i++)
+	for (i = idx - step; i <= idx; i++)
 	{
 		printf("Value checked array[%d] = [%d]\n", i, array[i]);
 		if (array[i] == value)
