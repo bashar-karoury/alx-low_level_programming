@@ -35,11 +35,13 @@ int advanced_binary(int *array, size_t size, int value)
  */
 int b_search(int *array, int start, int end, int value)
 {
+
 	int mid = 0;
 	/*printf("start = %d, end = %d\n", start , end);*/
 	printf("Searching in array:");
 	print_array(array, start, end);
-	if ((end - start) == 1)
+	/*printf("start = %d, end = %d\n", start, end);*/
+	if ((end - start) <= 1)
 	{
 
 		if (value == array[start])
