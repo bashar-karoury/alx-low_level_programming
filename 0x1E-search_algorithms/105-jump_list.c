@@ -24,25 +24,25 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	/* determine the range to search for */
 
-	while (list)
+	while (list->next)
 	{
 		if ((list->index % step) == 0 && list->index != 0)
 		{
 			printf("Value checked at index [%ld] = [%d]\n", list->index, list->n);
-			if (value < list->n)
+			if (value <= list->n)
 			{
-				/*printf("Bingo\n");*/
-				printf("Value found between indexes [%ld] and [%ld]\n",
-											prev_node->index, list->index);
 				break;
 			}
 			prev_node = list;
 		}
+		/*printf("Debug, list->n = %d\n", list->n);*/
 		list = list->next;
 	}
-
+	/*printf("Assert, list->n = %d\n", list->n);*/
+	printf("Value found between indexes [%ld] and [%ld]\n",
+								prev_node->index, list->index);
 	/* Now check interval one be one */
-	while (prev_node != list)
+	while (prev_node != list->next)
 	{
 		printf("Value checked at index [%ld] = [%d]\n",
 								prev_node->index, prev_node->n);
